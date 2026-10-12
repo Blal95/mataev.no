@@ -1,0 +1,452 @@
+{
+  "meta": {
+    "title": "Bilal R. Mataev | Fullstack-utvikler",
+    "description": "Fullstack-utvikler i Norge. Jeg designer og bygger nettsider og webapper, blant annet Loyvetmitt, som regner ut sjåførlønn for drosjeløyvehavere."
+  },
+  "nav": {
+    "openMenu": "Åpne meny",
+    "closeMenu": "Lukk meny",
+    "sections": "Seksjoner"
+  },
+  "boot": {
+    "title": "Åpne Bilals hytte",
+    "subtitle": "En 3D-portefølje med prosjekter, utdanning, bilder og kontakt.",
+    "loading": "Laster hytta",
+    "loaded": "Hytta er klar",
+    "enter": "Gå inn",
+    "skip": "Åpne 2D-side",
+    "reducedMotion": "Bevegelsesreduksjon er på. Åpner 2D-siden.",
+    "hints": [
+      "navigator.geolocation = Norge",
+      "laster nordlys-shader...",
+      "tenner peisen...",
+      "pusser laptopskjermen..."
+    ]
+  },
+  "hud": {
+    "move": "Beveg",
+    "look": "Se",
+    "interact": "Bruk",
+    "close": "Lukk",
+    "help": "Hjelp",
+    "run": "Løp",
+    "jump": "Hopp",
+    "mute": "Demp",
+    "back": "Tilbake til hytta",
+    "clickLook": "Klikk for å se deg rundt",
+    "clickResume": "Klikk for å fortsette",
+    "escRelease": "Esc slipper markøren",
+    "discovered": "funnet",
+    "allFound": "Alle stasjoner funnet",
+    "windCancel": "Stopp",
+    "vinylMutedHint": "Musikken er dempet. Trykk M for lyd",
+    "audioOn": "Lyd på",
+    "audioOff": "Lyd av",
+    "audioMute": "Slå av lyden",
+    "audioUnmute": "Slå på lyden"
+  },
+  "prompt": {
+    "thoughts": "Notater",
+    "signpost": "Les skiltet",
+    "fire": "Sett deg ved bålet",
+    "laptop": "Laptop",
+    "bookshelf": "Diplomrøys",
+    "photoWall": "Fotovegg",
+    "mailbox": "Postkasse",
+    "record": "Platespiller",
+    "recordPlay": "Spill musikk",
+    "recordStop": "Stopp musikk",
+    "borzik": "Snakk med Borzik",
+    "books": "Bokhylle",
+    "gallery": "Galleri",
+    "heritage": "Les tårnene"
+  },
+  "os": {
+    "name": "Bilal OS",
+    "menuFile": "Fil",
+    "menuView": "Vis",
+    "shutDown": "Avslutt",
+    "infoKind": "Type",
+    "infoYear": "År",
+    "infoRole": "Rolle",
+    "infoTech": "Teknologi",
+    "kindProject": "Prosjektmappe",
+    "visitSite": "Besøk side",
+    "openRepo": "Vis kildekode",
+    "openNewTab": "Åpne i ny fane",
+    "cantEmbed": "Denne siden laster ikke inne i Bilal OS.",
+    "loading": "Laster...",
+    "hintDesktop": "Åpne en mappe.",
+    "trashEmpty": "Papirkurven er tom.",
+    "trashBorzik": "Borzik spiste restene.",
+    "desktopSite": "mataev.no",
+    "desktopResume": "CV.pdf",
+    "desktopTerminal": "Terminal",
+    "desktopTrash": "Papirkurv",
+    "terminalBanner": "Bilal OS, borzik-shell v1.0. Skriv `help` for kommandoer.",
+    "terminalHelp": [
+      "Kommandoer:",
+      "  help              vis kommandoer",
+      "  whoami            identifiser Bilal",
+      "  ls / projects     list prosjekter",
+      "  open <navn>       åpne prosjektside",
+      "  resume            åpne CV",
+      "  contact           vis kontakt",
+      "  borzik            spør Borzik",
+      "  clear             tøm skjermen"
+    ],
+    "terminalWhoami": [
+      "bilal - fullstack-utvikler i Norge.",
+      "Lager nettsider og webapper, både design og kode.",
+      "Medgründer i Mash Partners."
+    ],
+    "terminalBorzik": [
+      "Borzik løper over skjermen.",
+      "Borzik ber om solsikkefrø."
+    ],
+    "terminalContactMail": "e-post  ",
+    "terminalContactGithub": "github  ",
+    "terminalContactHint": "eller trykk E ved postkassa.",
+    "terminalOpeningSite": "åpner {url}...",
+    "terminalNoPublicSite": "{project} har ingen offentlig side. Prøv `ls`.",
+    "terminalNoProject": "fant ikke prosjektet \"{project}\". Prøv `ls`.",
+    "terminalOpeningResume": "åpner CV...",
+    "terminalCommandNotFound": "fant ikke kommandoen: {command}. Skriv `help`."
+  },
+  "hero": {
+    "role": "Fullstack-utvikler",
+    "location": "Norge",
+    "heritage": "røtter i Kaukasus"
+  },
+  "now": {
+    "heading": "Nå",
+    "studying": {
+      "k": "Studerer",
+      "v": "Master i informatikk ved NTNU, regnskap ved UINN"
+    },
+    "building": {
+      "k": "Bygger",
+      "v": "Nettsider og konseptdesign i Mash Partners"
+    },
+    "reading": {
+      "k": "Leser"
+    },
+    "playing": {
+      "k": "Utenfor jobb",
+      "v": "Trening, reise og lesing"
+    }
+  },
+  "sections": {
+    "work": "Utvalgt arbeid",
+    "about": "Om",
+    "education": "Bakgrunn",
+    "contact": "Kontakt",
+    "record": "Platespiller",
+    "signpost": "Veiviser",
+    "borzik": "Borzik",
+    "books": "Bokhylle",
+    "gallery": "Galleri",
+    "heritage": "Mellom to fjell",
+    "groupStudy": "Studier",
+    "groupJob": "Jobb",
+    "ongoing": "Pågår"
+  },
+  "heritage": {
+    "eyebrow": "Mellom to fjell: Kaukasus-høylandet",
+    "p1": "Tårnene ved porten er bjov: vainakhiske kamptårn som tsjetsjenske og ingusjiske klaner bygde i Kaukasus fra 1000- til 1700-tallet.",
+    "p2": "Byggerne stablet hugget stein uten mørtel. De gjorde foten tung, smalnet tårnet oppover og kronet taket med en spiss tsurko.",
+    "p3": "Jeg bruker tårnene som bro: røtter i Kaukasus, liv i Norge og to fjellkulturer som respekterer utholdenhet og håndverk.",
+    "facts": [
+      {
+        "k": "Bjov",
+        "v": "Kamptårn. 20-25 m, fire-fem etasjer, kvadratisk grunnplan."
+      },
+      {
+        "k": "Tsurko",
+        "v": "Spiss toppstein på det trappede pyramidetaket."
+      },
+      {
+        "k": "Cherh",
+        "v": "Steinoverheng. Forsvarere brukte dem for å beskytte tårnet ovenfra."
+      },
+      {
+        "k": "Kurtulg",
+        "v": "Stolt stein. Sluttstein over dør og vindu; eieren kunne hugge navnet sitt i den."
+      },
+      {
+        "k": "Ghala",
+        "v": "Boligtårn. Familier levde rundt ildstedet og sentralpilaren Aerd-Bogham."
+      }
+    ],
+    "kicker": "Mellom to fjell",
+    "title": "Bjov: kamptårnet som måleobjekt",
+    "body": "Vainakhiske klaner stablet hugget stein uten mørtel, tung fot, smalt topp. Røttene mine er i Kaukasus og livet mitt er i Norge — to fjellkulturer, samme vane med å bygge for vær."
+  },
+  "about": {
+    "dossier": [
+      {
+        "k": "Bygger med",
+        "v": "TypeScript · Next.js · Fastify · PostgreSQL"
+      }
+    ]
+  },
+  "projects": {
+    "loyvetmitt": {
+      "title": "Loyvetmitt",
+      "context": "Via Mash Partners",
+      "role": "Sjefsutvikler og designer",
+      "summary": "Løyvehaveren laster opp Excel-filen med skiftene, og Loyvetmitt regner ut lønnen til hver sjåfør. Det sparer eieren 1⁠–⁠4 timer i måneden."
+    },
+    "mash": {
+      "title": "Mash Partners",
+      "context": "Medgründer",
+      "role": "Design og utvikling",
+      "summary": "Jeg designer og bygger det studioet leverer: vår egen nettside og tre kundesider så langt, for en artist, en restaurant og en moské."
+    },
+    "kaybeo": {
+      "title": "Kaybeo",
+      "context": "Via Mash Partners",
+      "role": "Design og utvikling",
+      "summary": "Nettsiden til artisten Kaybeo, med alle åtte utgivelsene og en spiller som fortsetter mens du blar."
+    },
+    "buypass": {
+      "title": "Buypass",
+      "context": "Bacheloroppgave, NTNU",
+      "role": "DevOps",
+      "summary": "Google og andre nettlesere stiller stadig nye krav til sertifikatpolicyer (CP/CPS). Pipelinen vår automatiserer mye av vedlikeholdet, og Buypass bruker den nå."
+    },
+    "myboard": {
+      "title": "Myboard",
+      "context": "Eget prosjekt",
+      "role": "Utvikling",
+      "summary": "Et sjakkspill for to over nett, med egne brett og brikker og trekk som synkroniseres mellom spillerne i sanntid."
+    },
+    "gallery": {
+      "title": "MATAEV Gallery",
+      "context": "Eget prosjekt",
+      "role": "Utvikling",
+      "summary": "Et fotoarkiv fra reiser og hverdag, med et API som leverer hvert bilde med EXIF og sted der det finnes."
+    },
+    "dl": {
+      "role": "Rolle",
+      "stack": "Stack"
+    },
+    "visit": "Besøk",
+    "shot": "Skjermbilde av forsiden til {site}"
+  },
+  "experience": {
+    "entur": {
+      "company": "Entur",
+      "role": "Kundekonsulent"
+    },
+    "taxi": {
+      "company": "Lillehammer Taxisentral, natt og helg",
+      "role": "Transportkoordinator"
+    },
+    "bknorstat": {
+      "company": "Burger King + Norstat",
+      "role": "Serviceansatt + datainnsamler"
+    }
+  },
+  "education": {
+    "line": "{level} i {degree}",
+    "level": {
+      "master": "Master",
+      "bachelor": "Bachelor"
+    },
+    "informatics": {
+      "degree": "informatikk",
+      "track": "Programming and Security Engineering"
+    },
+    "uinn": {
+      "degree": "regnskap og rådgivning"
+    },
+    "ntnuim": {
+      "degree": "informasjonsbehandling"
+    },
+    "ntnuprog": {
+      "degree": "programmering"
+    },
+    "thesis": "bacheloroppgave hos Buypass"
+  },
+  "contact": {
+    "name": "Navn",
+    "email": "E-post",
+    "message": "Melding",
+    "send": "Send melding",
+    "sending": "Sender...",
+    "sent": "Meldingen er mottatt. Tusen takk.",
+    "replySoon": "Bilal svarer snart",
+    "errorSend": "Meldingen feilet. Send e-post i stedet.",
+    "errors": {
+      "nameRequired": "Skriv navnet ditt.",
+      "emailInvalid": "Skriv en gyldig e-post.",
+      "messageShort": "Skriv minst 8 tegn."
+    },
+    "or": "Direkte kontakt",
+    "emailLabel": "E-post",
+    "phoneLabel": "Telefon",
+    "reveal": "Vis {label}"
+  },
+  "panel": {
+    "signpost": {
+      "title": "Hytteplassen",
+      "intro": "Du våknet ved bålet. Natta ligger over hytta, og nordlyset går mellom trærne. Start med en stasjon.",
+      "controls": "Bevegelse",
+      "walk": "WASD for å gå, Shift for å løpe",
+      "look": "Mus for å se",
+      "interact": "E åpner det du ser på",
+      "leave": "O åpner 2D-siden, Esc lukker",
+      "stations": "Stasjoner",
+      "projects": "Prosjekter",
+      "projectsHint": "arbeidsbenken på terrassen",
+      "education": "Utdanning",
+      "educationHint": "steinrøysa i vest",
+      "about": "Om",
+      "aboutHint": "fotobrettet på hytta",
+      "contact": "Kontakt",
+      "contactHint": "postkassa ved nordporten",
+      "record": "Platespiller",
+      "recordHint": "øst for bålet",
+      "borzikStation": "Borzik",
+      "borzikHint": "hamsterhjemmet ved bålet",
+      "books": "Bokhylle",
+      "booksHint": "inne, vestveggen",
+      "gallery": "Galleri",
+      "galleryHint": "ytterst i vest",
+      "heritage": "Arvetårn",
+      "heritageHint": "mellom to fjell",
+      "followWind": "Følg vinden",
+      "secrets": "Umerkede detaljer",
+      "secretsBody": "En plate spiller hvis du finner den. En gammel kode virker hvis du husker den.",
+      "languageLabel": "Språk",
+      "norwegian": "Norsk",
+      "english": "English"
+    },
+    "borzik": {
+      "intro": "Borzik bor i veggen, samler solsikkefrø og vurderer valgene til Bilal uten nåde.",
+      "you": "Du",
+      "send": "Send",
+      "placeholder": "Skriv til Borzik...",
+      "thinking": "*tenker...*"
+    },
+    "books": {
+      "intro": "Bøker jeg har lest eller vender tilbake til. Velg en for notatene mine.",
+      "by": "av",
+      "thoughts": "Notater",
+      "viewAll": "Alle bøker",
+      "statusRead": "Lest",
+      "statusReading": "Leser",
+      "statusWant": "Vil lese",
+      "empty": "Ingen bøker ennå.",
+      "reviewComing": "Notater kommer.",
+      "loading": "Laster hylla...",
+      "error": "Goodreads svarte ikke. Prøv senere.",
+      "close": "Lukk boka"
+    },
+    "gallery": {
+      "intro": "Bilder fra reise og hverdagsliv.",
+      "loading": "Laster...",
+      "empty": "Ingen bilder ennå. Kom tilbake senere.",
+      "error": "Galleriet lastet ikke.",
+      "fullSize": "Full størrelse",
+      "viewOnGallery": "Se i galleriet",
+      "untitled": "Uten tittel",
+      "photograph": "Fotografi",
+      "seeMore": "Åpne hele galleriet",
+      "seeAll": "Åpne galleriet",
+      "close": "Lukk",
+      "prevPhoto": "Forrige bilde",
+      "nextPhoto": "Neste bilde",
+      "cantEmbed": "Denne siden lastet ikke her.",
+      "chechnya": "Tsjetsjenia"
+    }
+  },
+  "footer": {
+    "copyright": "© {year} Bilal R. Mataev"
+  },
+  "cabinGate": {
+    "mobile": "Bruk en desktop-nettleser med WebGL for 3D-hytta.",
+    "noWebGL": "Nettleseren mangler WebGL. Prøv Chrome eller Firefox.",
+    "lowEnd": "Denne enheten kan slite med 3D.",
+    "badge": "Desktop"
+  },
+  "a11y": {
+    "closeDialog": "Lukk dialog",
+    "skipToContent": "Hopp til innhold"
+  },
+  "errors": {
+    "notFound": "Fant ikke siden."
+  },
+  "site": {
+    "chapters": {
+      "home": "Hjem",
+      "work": "Arbeid",
+      "about": "Om meg",
+      "contact": "Kontakt",
+      "cabin": "Hytta",
+      "label": "Kapitler"
+    },
+    "hero": {
+      "lede": "Fullstack-utvikler og designer i Norge. Jeg bygger webapper fra databasen til grensesnittet. Den siste, Loyvetmitt, gjør én Excel-fil med skift om til lønn for hver sjåfør.",
+      "ctaWork": "Se arbeidet"
+    },
+    "borzik": {
+      "name": "Borzik, hamsteren min",
+      "drawn": "Han i alle tegningene"
+    },
+    "about": {
+      "bio": [
+        "Jeg er utvikler og designer, med røtter i Kaukasus. I <mash>Mash Partners</mash> tar jeg hver nettside fra første skisse til ferdig kode, og <loyvetmitt>Loyvetmitt</loyvetmitt> ble laget på samme måte.",
+        "Jeg tar master i informatikk ved NTNU og bachelor i regnskap ved UINN, og jeg har hatt <background>jobb ved siden av skolen</background> siden 2020."
+      ],
+      "deskTitle": "Pulten min",
+      "noteTitle": "Nå",
+      "captions": {
+        "night": "Kveldstur ved vannet",
+        "baby": "Meg, ett år. Samme energi.",
+        "bowl": "Borzik, hamsteren min, sover i en skål",
+        "look": "Borzik som kikker opp"
+      },
+      "chess": "Myboard, sjakkspillet jeg skrev i C++",
+      "tidy": "Rydd pulten",
+      "tidied": "Pulten er ryddet",
+      "ask": "Spør meg om ham",
+      "askTitle": "Spør Borzik",
+      "backgroundTitle": "Har jobbet ved siden av skolen siden 2020"
+    },
+    "contact": {
+      "copy": "Kopier",
+      "copied": "Kopiert",
+      "copyLabel": "Kopier e-postadressen",
+      "open": "Jeg er ledig for alt fra fast jobb til frilans, og kan begynne med en gang."
+    },
+    "door": {
+      "title": "Hytta",
+      "enter": "Gå inn i 3D-hytta"
+    },
+    "notFound": {
+      "title": "Borzik spiste denne siden.",
+      "back": "Tilbake til forsiden"
+    },
+    "chrome": {
+      "home": "Bilal Mataev, til start",
+      "otherLanguage": "English",
+      "cabin": "3D-hytta"
+    },
+    "cv": {
+      "open": "CV",
+      "title": "CV",
+      "download": "Last ned",
+      "close": "Lukk",
+      "loading": "Laster CV-en …",
+      "error": "CV-en kunne ikke vises her.",
+      "pages": "{count} sider"
+    },
+    "stamp": {
+      "top": "Ledig",
+      "bottom": "for arbeid",
+      "label": "Ledig for arbeid. Gå til kontakt."
+    }
+  }
+}

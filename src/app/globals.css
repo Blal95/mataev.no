@@ -1,0 +1,1313 @@
+@import "tailwindcss";
+@plugin "tailwindcss-animate";
+@plugin "@tailwindcss/typography";
+
+/* `folio:` — styles that apply only while the folio runs sideways (desktop,
+   a real pointer, motion allowed, JS armed). Everything else is the page. */
+@custom-variant folio (&:where([data-folio="h"] *));
+
+/* ── ULTRAMARIN ─────────────────────────────────────────────────────────────
+   One hue. Ultramarine is the only colour on the site; everything else is its
+   paper and its ink. It marks what you can press or what is live, and it is
+   the ink Borzik is printed in. No gradients, no second hue.
+
+   Colour is carried by TONE, not by component. A tone sets the semantic
+   tokens for everything inside it, so a shared panel renders on the page, on
+   a blue flood and in the cabin's night dialog unchanged. Worst case of each
+   token against its tone's ground and ground-2 (WCAG, AA is 4.5):
+
+     day    fg 15.8  fg-2 10.3  fg-3 5.6  act 6.3  err 5.5  on-act/act 6.9
+     blue   fg 6.9   fg-2 5.8   fg-3 4.7  act 6.9  err 5.5  on-act/act 6.9
+     night  fg 15.5  fg-2 10.4  fg-3 6.6  act 6.3  err 7.4  on-act/act 7.0
+
+   `line` is FILL ONLY (rules, tracks, borders) in every tone. */
+:root {
+  --paper: #f4f5f7;
+  --paper-2: #e9ebf2;
+  --mist: #d9dceb;
+  --ink: #0e1024;
+  --ink-2: #2e3350;
+  --slate: #565b75;
+  --ultra: #2b3ae0;
+  /* Hover for ultramarine on paper, and the ink on a blue flood. 14.4:1. */
+  --deep: #111766;
+
+  /* Day is the default tone. */
+  --ground: var(--paper);
+  --ground-2: var(--paper-2);
+  --line: var(--mist);
+  --fg: var(--ink);
+  --fg-2: var(--ink-2);
+  --fg-3: var(--slate);
+  --act: var(--ultra);
+  --act-ink: var(--ultra);
+  --on-act: var(--paper);
+  --err: #b3261e;
+
+  /* ── The cabin's UI (HUD, boot, Bilal OS) is night-only and keeps its own
+     names. They are the night tone under the old labels. */
+  --color-midnight: #0e1024;
+  --color-panel: #151937;
+  --color-panel-2: #1d2246;
+  --color-border: #2a2f5c;
+  --color-slate: #4a5080;
+  --color-muted: #9ca0bd;
+  --color-steel: #b8bcd6;
+  --color-frost: #dde0ff;
+  --color-text: #f4f5f7;
+  --color-signal: #8c95ff;
+  --color-signal-deep: #2b3ae0;
+  --color-danger: #ff8a7a;
+  --color-danger-deep: #b3261e;
+  --color-paper: #f4f5f7;
+  --color-paper-2: #e9ebf2;
+  --color-paper-edge: #d9dceb;
+  --color-ink: #0e1024;
+  --color-ink-2: #2e3350;
+  --color-ink-3: #565b75;
+  --color-cyan: var(--color-frost);
+  --color-pacific: var(--color-frost);
+  --color-amber: var(--color-signal);
+  --color-oker: var(--color-signal);
+  --color-gron: var(--color-signal);
+  --color-success: var(--color-signal);
+  --color-stone: var(--color-steel);
+  --color-label: var(--color-steel);
+  --color-krapp: var(--color-signal-deep);
+  --color-ember: var(--color-signal-deep);
+
+  /* Two families, split by job. Archivo sets language, and its width axis is
+     the display voice: the name runs at 62% and stretches under the pointer.
+     Fragment Mono sets data — years, the clock, labels, stacks. */
+  --font-archivo-stack: var(--font-archivo), "Helvetica Neue", Arial, sans-serif;
+  --font-mono-stack: var(--font-fragment), ui-monospace, SFMono-Regular, monospace;
+
+  --ease-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in: cubic-bezier(0.7, 0, 0.84, 0);
+  /* The squeegee: slow in, slow out, one pass top to bottom. */
+  --ease-pull: cubic-bezier(0.65, 0, 0.35, 1);
+  /* The stamp: overshoots the paper and settles. */
+  --ease-press: cubic-bezier(0.2, 0.9, 0.3, 1);
+  --t-pull: 900ms;
+
+  /* The chapter spine, sideways: the display cut set bottom to top, sized by
+     the shorter of the screen's height and width. Its box is one line of it
+     plus a gutter, and every panel inside a chapter pads its left by it. */
+  --spine-size: min(11.5svh, 8vw);
+  --spine-w: calc(var(--spine-size) * 0.82 + 1.5rem);
+}
+
+.tone-day,
+[data-ink="day"] {
+  --ground: var(--paper);
+  --ground-2: var(--paper-2);
+  --line: var(--mist);
+  --fg: var(--ink);
+  --fg-2: var(--ink-2);
+  --fg-3: var(--slate);
+  --act: var(--ultra);
+  --act-ink: var(--ultra);
+  --on-act: var(--paper);
+  --err: #b3261e;
+  color-scheme: light;
+}
+.tone-blue,
+[data-ink="blue"] {
+  --ground: var(--ultra);
+  --ground-2: #2533c4;
+  --line: #5663ea;
+  --fg: var(--paper);
+  --fg-2: #dde0ff;
+  --fg-3: #c3c8ff;
+  --act: var(--paper);
+  --act-ink: #ffffff;
+  --on-act: var(--ultra);
+  --err: #ffd2cc;
+  color-scheme: dark;
+}
+.tone-night,
+[data-ink="night"] {
+  --ground: #0e1024;
+  --ground-2: #161a3a;
+  --line: #2a2f5c;
+  --fg: var(--paper);
+  --fg-2: #c6cae0;
+  --fg-3: #9ca0bd;
+  --act: #8c95ff;
+  --act-ink: #8c95ff;
+  --on-act: #0e1024;
+  --err: #ff8a7a;
+  color-scheme: dark;
+}
+
+@theme inline {
+  --color-ground: var(--ground);
+  --color-ground-2: var(--ground-2);
+  --color-line: var(--line);
+  --color-fg: var(--fg);
+  --color-fg-2: var(--fg-2);
+  --color-fg-3: var(--fg-3);
+  --color-act: var(--act);
+  --color-act-ink: var(--act-ink);
+  --color-on-act: var(--on-act);
+  --color-err: var(--err);
+  --color-ultra: var(--ultra);
+  --color-deep: var(--deep);
+
+  --color-background: var(--color-midnight);
+  --color-foreground: var(--color-text);
+  --color-midnight: var(--color-midnight);
+  --color-panel: var(--color-panel);
+  --color-panel-2: var(--color-panel-2);
+  --color-text: var(--color-text);
+  --color-muted: var(--color-muted);
+  --color-cyan: var(--color-cyan);
+  --color-amber: var(--color-amber);
+  --color-stone: var(--color-stone);
+  --color-label: var(--color-label);
+  --color-krapp: var(--color-krapp);
+  --color-oker: var(--color-oker);
+  --color-ember: var(--color-ember);
+  --color-signal: var(--color-signal);
+  --color-signal-deep: var(--color-signal-deep);
+  --color-pacific: var(--color-pacific);
+  --color-gron: var(--color-gron);
+  --color-frost: var(--color-frost);
+  --color-steel: var(--color-steel);
+  --color-slate: var(--color-slate);
+  --color-border: var(--color-border);
+  --color-success: var(--color-success);
+  --color-danger: var(--color-danger);
+  --color-paper: var(--color-paper);
+  --color-paper-2: var(--color-paper-2);
+  --color-paper-edge: var(--color-paper-edge);
+  --color-ink: var(--color-ink);
+  --color-ink-2: var(--color-ink-2);
+  --color-ink-3: var(--color-ink-3);
+  --color-danger-deep: var(--color-danger-deep);
+
+  --font-sans: var(--font-archivo-stack);
+  --font-mono: var(--font-mono-stack);
+  --font-display: var(--font-archivo-stack);
+}
+
+@theme {
+  --text-sm: 15px;
+}
+
+html {
+  background: var(--ground);
+  scroll-behavior: auto;
+}
+html,
+body {
+  color: var(--fg);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+body {
+  background: transparent;
+  min-height: 100dvh;
+  font-size: var(--text-sm);
+  /* `clip`, not `hidden`: hidden makes body a scroll container and breaks
+     every `position: sticky` below it, including the header. */
+  overflow-x: clip;
+}
+::selection {
+  background: var(--ultra);
+  color: var(--paper);
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+  .text-pretty {
+    text-wrap: pretty;
+  }
+  /* The display voice: Archivo's heaviest cut at 62% width, set in capitals
+     and packed tight. It is only ever the name, a chapter numeral or a page
+     title; everything else is the same family at normal width.
+     A component that animates display type writes `--wdth` on that same
+     element, never on an ancestor: custom properties inherit, so a width set
+     higher up would leak into every display line below it. */
+  .display {
+    font-family: var(--font-display);
+    font-weight: 800;
+    font-stretch: var(--wdth, 62%);
+    text-transform: uppercase;
+    letter-spacing: -0.012em;
+    line-height: 0.82;
+  }
+  .mono {
+    font-family: var(--font-mono);
+    font-variant-numeric: tabular-nums;
+  }
+  /* One label: Fragment Mono at 12px in capitals. */
+  .label {
+    font-family: var(--font-mono);
+    text-transform: uppercase;
+    font-size: 12px;
+    line-height: 1.5;
+    letter-spacing: 0.06em;
+  }
+  .measure {
+    max-width: 62ch;
+  }
+  .tabular {
+    font-variant-numeric: tabular-nums;
+  }
+  .surface {
+    background: var(--color-panel);
+    border: 1px solid var(--color-border);
+  }
+}
+
+.scrollbar-thin {
+  scrollbar-width: thin;
+  scrollbar-color: var(--line) transparent;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* In the base layer so a component can opt out with a utility: unlayered
+   rules would beat every Tailwind class regardless of specificity. */
+@layer base {
+  *:focus-visible {
+    outline: 2px solid var(--act);
+    outline-offset: 3px;
+  }
+}
+
+/* ── Borzik, printed ────────────────────────────────────────────────────────
+   Every drawing is two alpha masks cut from one screenprint: the ink, and the
+   paper inside the outline. <InkArt> stacks them and paints each with a
+   token, so Borzik is exact ultramarine on paper, paper on a blue flood, and
+   anything else a tone asks for. */
+@layer components {
+  .ink-art {
+    position: relative;
+    display: block;
+    --art-fill: var(--ground);
+    --art-ink: var(--act);
+  }
+  .ink-art > i {
+    position: absolute;
+    inset: 0;
+    -webkit-mask: center / contain no-repeat;
+    mask: center / contain no-repeat;
+  }
+  .ink-art > .ink-fill {
+    background: var(--art-fill);
+    -webkit-mask-image: var(--fill-mask);
+    mask-image: var(--fill-mask);
+  }
+  .ink-art > .ink-line {
+    background: var(--art-ink);
+    -webkit-mask-image: var(--ink-mask);
+    mask-image: var(--ink-mask);
+  }
+  /* The action frame a project column re-prints into. `display: none` keeps
+     its masks from downloading until <WorkRow> warms the row. */
+  .ink-art > .ink-alt {
+    display: none;
+    clip-path: inset(0 0 100% 0);
+  }
+  [data-warm] .ink-art > .ink-alt {
+    display: block;
+  }
+  .ink-art > .ink-fill.ink-alt {
+    -webkit-mask-image: var(--alt-fill-mask);
+    mask-image: var(--alt-fill-mask);
+  }
+  .ink-art > .ink-line.ink-alt {
+    -webkit-mask-image: var(--alt-ink-mask);
+    mask-image: var(--alt-ink-mask);
+  }
+}
+
+/* ── Projects ───────────────────────────────────────────────────────────────
+   One column per project. This CSS owns every display, grid and flex
+   property of `.proj` and `.proj-row`: a utility on either would beat the
+   subgrid. */
+@layer components {
+  .proj {
+    position: relative;
+    isolation: isolate;
+    /* Re-resolve the ink here, so text that only inherits its colour follows
+       the tokens a column swaps when it floods. */
+    color: var(--fg);
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+  .proj :where(p, h3, dt, dd, a) {
+    transition:
+      color 240ms var(--ease-expo) 120ms,
+      text-decoration-color 240ms var(--ease-expo);
+  }
+  .proj-row {
+    display: grid;
+  }
+  /* Borzik stands on the column's floor, whatever shape the room leaves him. */
+  .proj .ink-art > i {
+    -webkit-mask-position: bottom center;
+    mask-position: bottom center;
+  }
+  @media (min-width: 640px) {
+    .proj-row {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  /* Only a column that links somewhere floods, pulled down from the top. A
+     link's `:focus-visible` rather than `:focus-within`, so a mouse click
+     never leaves the column lit; the hover gate keeps touch from flooding.
+     Screen only: print drops the flood, and a column focused or under the
+     mouse would otherwise print its paper-coloured text on paper. */
+  .proj[data-link]::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background: var(--ultra);
+    clip-path: inset(0 0 100% 0);
+    transition: clip-path 560ms var(--ease-expo);
+  }
+  @media screen {
+    .proj[data-link]:has(:focus-visible)::before {
+      clip-path: inset(0);
+    }
+    .proj[data-link]:has(:focus-visible) {
+      --fg: var(--paper);
+      --fg-2: #dde0ff;
+      --fg-3: #c3c8ff;
+      --line: #5663ea;
+      --act: var(--paper);
+      --act-ink: #ffffff;
+      --on-act: var(--ultra);
+    }
+    .proj[data-link]:has(:focus-visible) .ink-art {
+      --art-ink: var(--deep);
+      --art-fill: var(--paper);
+    }
+  }
+  @media screen and (hover: hover) and (pointer: fine) {
+    .proj[data-link]:hover::before {
+      clip-path: inset(0);
+    }
+    .proj[data-link]:hover {
+      --fg: var(--paper);
+      --fg-2: #dde0ff;
+      --fg-3: #c3c8ff;
+      --line: #5663ea;
+      --act: var(--paper);
+      --act-ink: #ffffff;
+      --on-act: var(--ultra);
+    }
+    .proj[data-link]:hover .ink-art {
+      --art-ink: var(--deep);
+      --art-fill: var(--paper);
+    }
+  }
+  /* The ink leaves out of the bottom, then snaps back up unseen. These tie
+     the hover rules on specificity, so they must stay after them. */
+  .proj[data-link][data-exit]::before {
+    clip-path: inset(100% 0 0 0);
+    transition: clip-path 380ms var(--ease-in);
+  }
+  .proj[data-link].proj-reset::before {
+    transition: none;
+  }
+}
+
+/* ── The desk ───────────────────────────────────────────────────────────────
+   Things lying on the About page's blue band. From md up each one sits at its
+   spot (--x, --y, --w, tilted --r) and, with a mouse, can be dragged (--dx,
+   --dy); below md they stack, tilted half as much. */
+@layer components {
+  .desk-item {
+    position: relative;
+    transform: translate(var(--dx, 0px), var(--dy, 0px)) rotate(calc(var(--r, 0deg) * 0.5));
+    transition:
+      scale 0.3s var(--ease-expo),
+      filter 0.3s var(--ease-expo);
+  }
+  @media (min-width: 768px) {
+    .desk-item {
+      position: absolute;
+      left: var(--x);
+      top: var(--y);
+      width: var(--w);
+      transform: translate(var(--dx, 0px), var(--dy, 0px)) rotate(var(--r, 0deg));
+    }
+  }
+  .desk[data-draggable] .desk-item {
+    cursor: grab;
+    touch-action: none;
+    user-select: none;
+  }
+  [data-folio="h"] .desk-item {
+    width: var(--wh);
+  }
+  .desk-item[data-lift] {
+    cursor: grabbing;
+    scale: 1.03;
+    filter: drop-shadow(0 24px 30px rgb(8 12 60 / 0.35));
+  }
+  /* Put back: the dragged things glide home instead of jumping. */
+  .desk[data-tidying] .desk-item {
+    transition:
+      transform 420ms var(--ease-expo),
+      scale 0.3s var(--ease-expo),
+      filter 0.3s var(--ease-expo);
+  }
+}
+
+/* The pull: the paper lands first, then the ink comes down over it top to
+   bottom, the way a squeegee drags ink through a screen. */
+@keyframes ink-pull {
+  from {
+    clip-path: inset(0 0 100% 0);
+  }
+}
+@keyframes ink-paper {
+  from {
+    opacity: 0;
+  }
+}
+/* `''` pulls on mount, `intro` only on a hard load's arrival, and `wait` holds
+   a print that is off screen until <InkArt> sets `go`. Screen only: these
+   unlayered rules outrank the print reset, and nothing prints half-pulled. */
+@media screen and (prefers-reduced-motion: no-preference) {
+  .ink-art[data-pull=""] > .ink-fill:not(.ink-alt),
+  [data-intro] .ink-art[data-pull="intro"] > .ink-fill:not(.ink-alt),
+  .ink-art[data-pull="go"] > .ink-fill:not(.ink-alt) {
+    animation: ink-paper 0.5s var(--ease-expo) both;
+    animation-delay: var(--pull-delay, 0ms);
+  }
+  .ink-art[data-pull=""] > .ink-line:not(.ink-alt),
+  [data-intro] .ink-art[data-pull="intro"] > .ink-line:not(.ink-alt),
+  .ink-art[data-pull="go"] > .ink-line:not(.ink-alt) {
+    animation: ink-pull var(--t-pull) var(--ease-pull) both;
+    animation-delay: calc(var(--pull-delay, 0ms) + 150ms);
+  }
+  .ink-art[data-pull="wait"] > .ink-fill:not(.ink-alt) {
+    opacity: 0;
+  }
+  .ink-art[data-pull="wait"] > .ink-line:not(.ink-alt) {
+    clip-path: inset(0 0 100% 0);
+  }
+}
+
+/* The re-print. On hover or focus a project column pulls its print through
+   the screen again: the rest print leaves out of the bottom and the action
+   frame comes down from the top, and the same way round on the way back. A
+   column with no action frame keeps its print. Unlayered and after the pull,
+   because it has to beat those animations. */
+@keyframes ink-out {
+  from {
+    clip-path: inset(0);
+  }
+  to {
+    clip-path: inset(100% 0 0 0);
+  }
+}
+@keyframes ink-in {
+  from {
+    clip-path: inset(0 0 100% 0);
+  }
+  to {
+    clip-path: inset(0);
+  }
+}
+@media screen {
+  .proj[data-art="alt"] .ink-art:has(> .ink-alt) > i:not(.ink-alt),
+  .proj[data-art="rest"] .ink-art > .ink-alt {
+    animation: ink-out 320ms var(--ease-in) both;
+  }
+  .proj[data-art="alt"] .ink-art > .ink-alt,
+  .proj[data-art="rest"] .ink-art:has(> .ink-alt) > i:not(.ink-alt) {
+    animation: ink-in 560ms var(--ease-pull) 160ms both;
+  }
+}
+
+/* ── Sheet pull ─────────────────────────────────────────────────────────────
+   Switching language re-prints the page: the new sheet is pulled down over
+   the old one. The night cover is the cabin's night, laid over the page
+   while the cabin boots. */
+.night-cover {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  background: var(--ground);
+  pointer-events: none;
+}
+@keyframes sheet-pull {
+  from {
+    clip-path: inset(0 0 100% 0);
+  }
+}
+@media (prefers-reduced-motion: no-preference) {
+  :root[data-vt="sheet"]::view-transition-old(root) {
+    animation: none;
+  }
+  :root[data-vt="sheet"]::view-transition-new(root) {
+    animation: sheet-pull 600ms var(--ease-pull) both;
+  }
+}
+
+/* ── The folio ──────────────────────────────────────────────────────────────
+   Down the page by default: SSR, no JS, phones, reduced motion. When <Folio>
+   arms `data-folio="h"` the page becomes one sticky frame that the document's
+   vertical scroll pans from left to right. */
+[data-folio="h"] .folio-frame {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  height: 100svh;
+  /* `clip`, not `hidden`: a clipped box cannot be scrolled programmatically,
+     so focusing an off-screen link can never drag the frame sideways. */
+  overflow: clip;
+}
+[data-folio="h"] .folio-track {
+  display: flex;
+  height: 100%;
+  width: max-content;
+  will-change: transform;
+}
+[data-folio="h"] .panel {
+  height: 100%;
+  flex: none;
+  /* A chapter numeral sliding in, or a photo dragged off the desk, stays in
+     its own panel instead of painting over the next one. */
+  overflow: clip;
+}
+[data-folio="h"] [data-chapter] {
+  position: relative;
+  display: flex;
+  height: 100%;
+  flex: none;
+}
+/* The spine stands on the chapter's left edge, and <Chapter> translates it to
+   stay pinned while its chapter pans past. Strict containment keeps the
+   width-axis stretch of its word from reaching layout outside the box. */
+[data-folio="h"] .spine-box {
+  position: absolute;
+  top: 4.5rem;
+  bottom: 4.5rem;
+  left: 0;
+  z-index: 5;
+  width: var(--spine-w);
+  margin: 0;
+  padding: 0;
+  border: 0;
+  display: flex;
+  justify-content: center;
+  background: var(--ground);
+  color: var(--fg);
+  box-shadow: inset -1px 0 var(--line);
+  contain: strict;
+  will-change: translate;
+  transition:
+    background-color 300ms var(--ease-expo),
+    color 300ms var(--ease-expo);
+}
+[data-folio="h"] .spine {
+  writing-mode: sideways-lr;
+  font-size: var(--spine-size);
+  line-height: 0.82;
+  gap: 0.35em;
+}
+@supports not (writing-mode: sideways-lr) {
+  [data-folio="h"] .spine {
+    writing-mode: vertical-rl;
+    rotate: 180deg;
+  }
+}
+[data-folio="h"] .spine-word {
+  font-stretch: var(--wdth, 62%);
+}
+/* The numeral stands upright at the foot of the spine: turned on its side,
+   "III" reads as three bars. */
+[data-folio="h"] .spine-num {
+  writing-mode: horizontal-tb;
+  align-self: center;
+}
+
+/* ── Borzik, introduced ─────────────────────────────────────────────────────
+   Under a pointer or focus, the photograph the first print was drawn from is
+   pulled down beside it, top to bottom. Screen only. */
+@layer components {
+  .borzik-peek {
+    position: absolute;
+    top: 0;
+    right: calc(100% + 1rem);
+    width: min(10rem, 80%);
+    rotate: -4deg;
+    box-shadow: 0 18px 40px -16px rgb(8 12 60 / 0.45);
+    clip-path: inset(0 0 100% 0);
+    pointer-events: none;
+  }
+}
+@media screen and (hover: hover) and (pointer: fine) {
+  .borzik-tag:hover .borzik-peek,
+  .borzik-tag:focus-within .borzik-peek {
+    clip-path: inset(-3rem);
+  }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .borzik-peek {
+    transition: clip-path var(--t-pull) var(--ease-pull);
+  }
+}
+@media print {
+  .borzik-peek {
+    display: none;
+  }
+}
+
+/* ── The sheet ──────────────────────────────────────────────────────────────
+   The folio in miniature in the bottom-left corner: one block per panel, each
+   in its own tone whatever the sheet floats over, and a frame for the screen
+   that rides along the pan (`--x`, the pan's share of the track). The edges
+   and the frame take the tone under the sheet, so it reads on paper, on the
+   blue desk and in the cabin's night. */
+@layer components {
+  .sheet {
+    --sheet-w: 15rem;
+    /* Resolved here, so the blocks' own tones do not change their edges. */
+    --sheet-edge: var(--fg-3);
+    width: var(--sheet-w);
+  }
+  .sheet-strip {
+    position: relative;
+    display: flex;
+    height: 0.625rem;
+    outline: 1px solid var(--sheet-edge);
+    cursor: pointer;
+    touch-action: none;
+  }
+  .sheet-strip > [data-tone] {
+    background: var(--ground);
+  }
+  .sheet-strip > [data-tone] + [data-tone] {
+    border-left: 1px solid var(--sheet-edge);
+  }
+  .sheet-frame {
+    position: absolute;
+    inset-block: -0.3125rem;
+    left: 0;
+    border: 2px solid var(--act-ink);
+    transform: translateX(calc(var(--x, 0) * var(--sheet-w)));
+    pointer-events: none;
+  }
+}
+
+/* One grid for all the columns, each a subgrid over the same six rows (art,
+   slug, title, sentence, roles, link) between two spacers, so they read
+   across like a table and sit mid-screen. The art row gives its height up
+   first on a short screen, so the row fits any panel height by construction,
+   and the art stands on its floor, right over the slug it belongs to. A
+   column is two tracks wide; a `wide` one, three. */
+[data-folio="h"] .proj-row {
+  grid-template-columns: none;
+  grid-auto-flow: column;
+  grid-auto-columns: clamp(10rem, 12.5vw, 14rem);
+  grid-template-rows: 1fr minmax(4.5rem, min(19rem, 34svh)) auto auto auto auto 1fr;
+  height: 100%;
+}
+/* Past the top spacer, one child per row. */
+[data-folio="h"] .proj > :nth-child(1) {
+  grid-row: 2;
+}
+[data-folio="h"] .proj > :nth-child(2) {
+  grid-row: 3;
+}
+[data-folio="h"] .proj > :nth-child(3) {
+  grid-row: 4;
+}
+[data-folio="h"] .proj > :nth-child(4) {
+  grid-row: 5;
+}
+[data-folio="h"] .proj > :nth-child(5) {
+  grid-row: 6;
+}
+[data-folio="h"] .proj > :nth-child(6) {
+  grid-row: 7;
+}
+[data-folio="h"] .proj {
+  grid-column: span 2;
+  grid-row: 1 / -1;
+  display: grid;
+  /* One column the width of the article: an auto column would grow to fit
+     Borzik's art at the row's full height and push past the column. */
+  grid-template-columns: minmax(0, 1fr);
+  grid-template-rows: subgrid;
+  row-gap: 0.75rem;
+}
+[data-folio="h"] .proj[data-wide] {
+  grid-column: span 3;
+}
+
+/* The deal-out: while the desk comes on screen, `--deal` runs 0 → 1 and the
+   things on it spread from a loose pile to their spots, one after another
+   (`--k`). The independent `translate` and `rotate` compose with the drag's
+   `transform`, so a dragged photo still deals. */
+[data-folio="h"] .desk {
+  container-type: size;
+}
+[data-folio="h"] .desk-item {
+  --d: clamp(0, calc(var(--deal, 1) * 1.6 - var(--k, 0) * 0.1), 1);
+  translate:
+    calc((46 - var(--xn, 46)) * 1cqw * (1 - var(--d)))
+    calc((40 - var(--yn, 40)) * 1cqh * (1 - var(--d)));
+  rotate: calc((1 - var(--d)) * var(--pr, 0deg));
+}
+
+/* ── The stamp ──────────────────────────────────────────────────────────────
+   Availability, as a rubber-stamp impression: a double rule in the one ink,
+   set at an angle. It is pressed on once, a beat after the name lands, and
+   the seal beside the words is traced as it lands. The inner rule is a
+   `::before` border, not an outline, so the page's focus ring still shows. */
+@layer components {
+  .stamp {
+    --stamp-tilt: -7deg;
+    position: relative;
+    border: 2.5px solid currentColor;
+    transform: rotate(var(--stamp-tilt));
+    text-decoration: none;
+  }
+  .stamp::before {
+    content: "";
+    position: absolute;
+    inset: 4.5px;
+    border: 1px solid currentColor;
+    pointer-events: none;
+  }
+  a.stamp:focus-visible {
+    outline-offset: 6px;
+  }
+}
+@keyframes stamp-press {
+  0% {
+    opacity: 0;
+    transform: rotate(var(--stamp-tilt)) scale(1.4);
+  }
+  55% {
+    opacity: 1;
+    transform: rotate(var(--stamp-tilt)) scale(0.96);
+  }
+  100% {
+    transform: rotate(var(--stamp-tilt)) scale(1);
+  }
+}
+/* Hover or focus presses it again, lightly. */
+@keyframes stamp-tap {
+  50% {
+    transform: rotate(var(--stamp-tilt)) scale(0.96);
+  }
+}
+@keyframes tm-draw {
+  from {
+    stroke-dashoffset: 1.001;
+  }
+}
+@media (prefers-reduced-motion: no-preference) {
+  [data-intro] .stamp {
+    animation: stamp-press 0.5s var(--ease-press) 0.9s both;
+  }
+  [data-intro] .stamp .tm path {
+    animation: tm-draw 600ms var(--ease-expo) 1s both;
+  }
+  .stamp[data-now] {
+    animation: stamp-press 0.4s var(--ease-press) both;
+  }
+  a.stamp:focus-visible {
+    animation: stamp-tap 260ms var(--ease-press);
+  }
+}
+@media (prefers-reduced-motion: no-preference) and (hover: hover) and (pointer: fine) {
+  a.stamp:hover {
+    animation: stamp-tap 260ms var(--ease-press);
+  }
+}
+
+/* ── Reveal ─────────────────────────────────────────────────────────────────
+   Set by <Reveal> only after JS arms it and only for things off screen, so
+   the static page is always the finished page. */
+@layer components {
+  [data-reveal="in"] {
+    transition:
+      clip-path 1.1s var(--ease-expo),
+      opacity 0.8s var(--ease-expo),
+      transform 0.9s var(--ease-expo);
+    transition-delay: var(--reveal-delay, 0ms);
+  }
+  [data-reveal="wait"][data-kind="wipe"] {
+    clip-path: inset(0 100% 0 0);
+  }
+  [data-kind="draw"] {
+    transform-origin: left center;
+  }
+  [data-reveal="wait"][data-kind="draw"] {
+    transform: scaleX(0);
+  }
+  /* Pull is the squeegee, top to bottom; press is the stamp coming down. */
+  [data-reveal="wait"][data-kind="pull"] {
+    clip-path: inset(0 0 100% 0);
+  }
+  [data-reveal="in"][data-kind="pull"] {
+    transition: clip-path var(--t-pull) var(--ease-pull);
+    transition-delay: var(--reveal-delay, 0ms);
+  }
+  [data-reveal="wait"][data-kind="press"] {
+    opacity: 0;
+    transform: scale(1.4);
+  }
+  [data-reveal="in"][data-kind="press"] {
+    transition:
+      opacity 0.25s var(--ease-expo),
+      transform 0.5s var(--ease-press);
+    transition-delay: var(--reveal-delay, 0ms);
+  }
+}
+
+/* ── Arrival ────────────────────────────────────────────────────────────────
+   The hero's entrance is CSS, so it runs from first paint with no hydration
+   wait. It plays only under `html[data-intro]`, which the folio's boot script
+   sets on a hard load with motion allowed and removes after 2.4 s: without
+   JS the hero is simply there, and a locale switch never replays it. Lines
+   rise out of a mask. */
+@keyframes arrive-rise {
+  from {
+    transform: translateY(105%);
+  }
+}
+@keyframes arrive-fade {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+}
+@media (prefers-reduced-motion: no-preference) {
+  [data-intro] .arrive-rise {
+    animation: arrive-rise 1.1s var(--ease-expo) both;
+  }
+  [data-intro] .arrive-fade {
+    animation: arrive-fade 0.9s var(--ease-expo) both;
+  }
+}
+
+/* ── The mark ───────────────────────────────────────────────────────────────
+   Two Vainakh towers whose inner roof lines fall to a point: the M. Each
+   stroke has `pathLength="1"`, so one number draws it. `--draw` (0 → 1)
+   traces the parts in order, overlapping: towers, roofs, slits, and last
+   the valley that makes the M, in ultramarine on the corner mark. */
+@layer components {
+  /* The gap is longer than the path and the dash starts a hair before it, so
+     an undrawn stroke leaves no round-cap dot at either end. */
+  .tm path {
+    stroke-dasharray: 1 2;
+    stroke-dashoffset: calc(1.001 - var(--seg, 1));
+  }
+  .tm .tm-tower {
+    --seg: clamp(0, calc(var(--draw, 1) / 0.5), 1);
+  }
+  .tm .tm-roof {
+    --seg: clamp(0, calc((var(--draw, 1) - 0.3) / 0.35), 1);
+    transition: translate 240ms var(--ease-expo);
+  }
+  .tm .tm-slit {
+    --seg: clamp(0, calc((var(--draw, 1) - 0.45) / 0.25), 1);
+  }
+  .tm .tm-valley {
+    --seg: clamp(0, calc((var(--draw, 1) - 0.65) / 0.35), 1);
+  }
+  .tm-accent .tm-valley {
+    stroke: var(--act);
+  }
+  /* The corner mark is traced by the pan as Home leaves. Sideways it is
+     hidden at the start, where the towered M in the name is the brand; once
+     it is there, keyboard focus shows it whole. */
+  .mark-btn {
+    --draw: var(--draw-pan, 1);
+  }
+  .mark-btn:focus-visible {
+    --draw: 1;
+  }
+  .mark-btn[data-drawn="0"] {
+    visibility: hidden;
+  }
+  /* Sideways, a hard load paints before the pan has said how much to draw. */
+  [data-folio="h"] .mark-btn:not([data-drawn]) {
+    visibility: hidden;
+  }
+  @media (hover: hover) and (pointer: fine) {
+    .mark-btn:hover .tm-roof {
+      translate: 0 -1.5px;
+    }
+  }
+}
+
+/* The M of MATAEV is the mark, drawn as a glyph. Its width follows the font's
+   own M along the width axis (`--s` is the line's stretch, `--m-a0` and
+   `--m-k` are measured from Archivo 800), so the towers part with the name.
+   The roofs rise above the cap line and top out step by step on arrival. */
+@layer components {
+  .tower-m {
+    position: relative;
+    display: inline-block;
+    height: calc(var(--m-cap) * 1em);
+    width: calc((var(--m-a0) + (var(--s, 62) - 62) * var(--m-k)) * 1em);
+  }
+  .tower-m > svg {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: calc((var(--m-cap) + var(--m-roof)) * 1em);
+    overflow: visible;
+    fill: currentColor;
+  }
+}
+@keyframes roof-rise {
+  from {
+    transform: scaleY(0);
+  }
+}
+@media (prefers-reduced-motion: no-preference) {
+  [data-intro] .tower-m .roof {
+    transform-box: fill-box;
+    transform-origin: 50% 100%;
+    animation: roof-rise 360ms var(--ease-expo) both;
+    animation-delay: calc(1150ms + var(--i, 0) * 70ms);
+  }
+}
+
+/* ── Chapter spine ──────────────────────────────────────────────────────────
+   Each of II–IV opens with its numeral and word in the display cut. Down the
+   page it is a ruled header; sideways (the folio rules above) it stands on
+   the chapter's left edge, set bottom to top. */
+@layer components {
+  .spine-box {
+    border-bottom: 1px solid var(--line);
+    padding-bottom: 0.75rem;
+    margin-bottom: 2.5rem;
+  }
+  .spine {
+    margin: 0;
+    display: flex;
+    align-items: baseline;
+    gap: 0.75rem;
+    font-family: var(--font-display);
+    font-weight: 800;
+    font-stretch: 62%;
+    text-transform: uppercase;
+    letter-spacing: -0.012em;
+    line-height: 0.85;
+    font-size: clamp(3.5rem, 15vw, 6rem);
+    white-space: nowrap;
+  }
+  .spine-num {
+    color: var(--act-ink);
+  }
+}
+
+/* ── Portrait ───────────────────────────────────────────────────────────────
+   A grey print with the colour print over it, pulled down top to bottom
+   under the pointer; without one, <AboutPanel> develops it once in view. */
+@layer components {
+  .portrait-colour {
+    clip-path: inset(0 0 100% 0);
+    transition: clip-path 700ms var(--ease-pull);
+  }
+  .portrait[data-developed] .portrait-colour {
+    clip-path: inset(0);
+  }
+  @media (hover: hover) and (pointer: fine) {
+    .portrait:hover .portrait-colour {
+      clip-path: inset(0);
+    }
+  }
+}
+
+/* ── Year strips ────────────────────────────────────────────────────────────
+   Each Background row carries its years on one shared scale, 0–1 across the
+   strip: a hairline track, the bar from `--a` to `--b`, and for an ongoing
+   row with a known end, a hairline on to `--e`. The bar's ink and its draw-in
+   come from the <Reveal> inside it. */
+@layer components {
+  .strip {
+    position: relative;
+    display: block;
+    height: 0.75rem;
+  }
+  .strip::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: calc(50% - 0.5px);
+    height: 1px;
+    background: var(--line);
+  }
+  .strip > .strip-bar {
+    position: absolute;
+    top: calc(50% - 2px);
+    height: 4px;
+    left: calc(var(--a) * 100%);
+    width: calc((var(--b) - var(--a)) * 100%);
+  }
+  .strip > .strip-tail {
+    position: absolute;
+    top: calc(50% - 0.5px);
+    height: 1px;
+    left: calc(var(--b) * 100%);
+    width: calc((var(--e) - var(--b)) * 100%);
+    background: var(--act);
+  }
+}
+
+/* ── The door ───────────────────────────────────────────────────────────────
+   A night window opens to full bleed as the last panel comes on. The window
+   scales and the room inside is counter-scaled so it stays put: composited
+   scales, never a clip-path redrawn every frame. */
+@layer components {
+  .door-window {
+    position: absolute;
+    inset: 0;
+    overflow: clip;
+    scale: var(--sx, 1) var(--sy, 1);
+    will-change: scale;
+  }
+  .door-inner {
+    position: absolute;
+    inset: 0;
+    scale: calc(1 / var(--sx, 1)) calc(1 / var(--sy, 1));
+    will-change: scale;
+  }
+  .door-word {
+    contain: layout;
+    white-space: nowrap;
+  }
+}
+
+/* ── Form fields ────────────────────────────────────────────────────────────
+   A field is a ruled line on the ground, not a box. The rule is `fg-3`, which
+   clears 3:1 as a component boundary on every tone; focus thickens it to `fg`
+   and keeps the page's outline. */
+@layer components {
+  .field {
+    width: 100%;
+    background: transparent;
+    border: 0;
+    border-bottom: 1px solid var(--fg-3);
+    padding: 0.7rem 0;
+    color: var(--fg);
+    font-size: 17px;
+    transition: border-color 200ms var(--ease-expo), box-shadow 200ms var(--ease-expo);
+  }
+  .field::placeholder {
+    color: var(--fg-3);
+  }
+  .field:focus {
+    outline: none;
+    border-bottom-color: var(--fg);
+    box-shadow: 0 1px 0 0 var(--fg);
+  }
+  .field[aria-invalid="true"] {
+    border-bottom-color: var(--err);
+    box-shadow: 0 1px 0 0 var(--err);
+  }
+  textarea.field {
+    resize: vertical;
+    min-height: 7.5rem;
+    line-height: 1.5;
+  }
+}
+
+/* ── Cabin UI: guiding-wind chip ── */
+
+/* Tiny CSS wind glyph — three drifting aurora lines (no SVG/icon) */
+.wind-glyph {
+  position: relative;
+  display: inline-block;
+  width: 13px;
+  height: 10px;
+  flex-shrink: 0;
+}
+.wind-glyph::before,
+.wind-glyph::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  height: 1.5px;
+  background: var(--act);
+  animation: wind-drift 1.9s ease-in-out infinite;
+}
+.wind-glyph::before { top: 2px;  width: 13px; animation-delay: 0s; }
+.wind-glyph::after  { top: 6px;  width: 9px;  animation-delay: 0.35s; }
+
+@keyframes wind-drift {
+  0%   { transform: translateX(-3px) scaleX(0.7); opacity: 0.3; }
+  45%  { transform: translateX(1px)  scaleX(1.0); opacity: 1.0; }
+  100% { transform: translateX(4px)  scaleX(0.6); opacity: 0.0; }
+}
+
+/* ── The crosshair ──────────────────────────────────────────────────────────
+   A point of paper ink at rest. On something you can use, four crop marks
+   close in around it and the tag slides out beside it. Transform and opacity
+   only. */
+@layer components {
+  .reticle {
+    width: 28px;
+    height: 28px;
+    translate: -50% -50%;
+  }
+  .reticle-dot {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 4px;
+    height: 4px;
+    translate: -50% -50%;
+    background: var(--fg);
+    transition: background-color 160ms var(--ease-expo);
+  }
+  .reticle[data-on] .reticle-dot {
+    background: var(--act);
+  }
+  .reticle-mark {
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    border: 0 solid var(--act);
+    opacity: 0;
+    transition:
+      opacity 160ms var(--ease-expo),
+      translate 260ms var(--ease-expo);
+  }
+  .reticle-mark[data-corner="tl"] { left: 0; top: 0; border-width: 2px 0 0 2px; translate: -6px -6px; }
+  .reticle-mark[data-corner="tr"] { right: 0; top: 0; border-width: 2px 2px 0 0; translate: 6px -6px; }
+  .reticle-mark[data-corner="bl"] { left: 0; bottom: 0; border-width: 0 0 2px 2px; translate: -6px 6px; }
+  .reticle-mark[data-corner="br"] { right: 0; bottom: 0; border-width: 0 2px 2px 0; translate: 6px 6px; }
+  .reticle[data-on] .reticle-mark {
+    opacity: 1;
+    translate: 0 0;
+  }
+  .reticle-tag {
+    position: absolute;
+    left: calc(100% + 12px);
+    top: 50%;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    white-space: nowrap;
+    padding: 6px 10px;
+    border: 1px solid var(--line);
+    background: var(--ground);
+    translate: 0 -50%;
+    animation: reticle-tag-in 220ms var(--ease-expo) both;
+  }
+}
+@keyframes reticle-tag-in {
+  from {
+    opacity: 0;
+    translate: -6px -50%;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .reticle-mark,
+  .reticle-dot {
+    transition: none;
+  }
+  .reticle-tag {
+    animation: none;
+  }
+}
+
+/* ── The cabin's door (BootScreen) ────────────────────────────────────────
+   Borzik's ink is pulled down over the paper as the cabin loads (`--ink`,
+   0–100), and going in walks through the door: the picture scales up around
+   the doorway while the words and the rail step aside. Transform, opacity and
+   one small clip only. */
+@layer components {
+  .boot-print > .ink-line {
+    clip-path: inset(0 0 calc((100 - var(--ink, 100)) * 1%) 0);
+  }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .boot-print > .ink-line {
+    transition: clip-path 320ms linear;
+  }
+  .boot-fill {
+    transition: transform 320ms linear;
+  }
+  .boot-art {
+    /* The dark of the doorway, above Borzik's head. */
+    transform-origin: 50% 26%;
+    transition:
+      transform 1000ms var(--ease-in),
+      opacity 350ms linear 650ms;
+  }
+  .boot[data-going] .boot-art {
+    transform: scale(9);
+    opacity: 0;
+  }
+  .boot-ui {
+    transition: opacity 220ms var(--ease-expo);
+  }
+  .boot[data-going] .boot-ui {
+    opacity: 0;
+  }
+}
+
+/* ── Print ──────────────────────────────────────────────────────────────────
+   The folio prints as the vertical document. The chrome, the desk, the form
+   and the door stay off paper, and every armed state is reset so nothing
+   prints half-pulled or clipped. */
+@media print {
+  @page {
+    margin: 14mm;
+  }
+  [data-print="hide"],
+  #cabin,
+  .panel[data-tone="blue"],
+  form {
+    display: none;
+  }
+  [data-reveal] {
+    clip-path: none;
+    opacity: 1;
+    transform: none;
+  }
+  .ink-art > i {
+    animation: none;
+    clip-path: none;
+    opacity: 1;
+  }
+  .ink-art > .ink-alt {
+    display: none;
+  }
+  .spine-box {
+    translate: none;
+  }
+  .proj::before {
+    display: none;
+  }
+  .proj,
+  li {
+    break-inside: avoid;
+  }
+}

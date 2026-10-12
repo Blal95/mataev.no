@@ -1,0 +1,452 @@
+{
+  "meta": {
+    "title": "Bilal R. Mataev | Full-Stack Developer",
+    "description": "Full-stack developer in Norway. I design and build websites and web apps, including Loyvetmitt, which works out driver pay for taxi licence owners."
+  },
+  "nav": {
+    "openMenu": "Open menu",
+    "closeMenu": "Close menu",
+    "sections": "Sections"
+  },
+  "boot": {
+    "title": "Enter Bilal’s cabin",
+    "subtitle": "A 3D portfolio with projects, education, photos, and contact.",
+    "loading": "Loading cabin",
+    "loaded": "Cabin ready",
+    "enter": "Step inside",
+    "skip": "Open 2D site",
+    "reducedMotion": "Reduced motion is on. Opening 2D site.",
+    "hints": [
+      "navigator.geolocation = Norway",
+      "loading aurora shader...",
+      "lighting fireplace...",
+      "cleaning laptop screen..."
+    ]
+  },
+  "hud": {
+    "move": "Move",
+    "look": "Look",
+    "interact": "Interact",
+    "close": "Close",
+    "help": "Help",
+    "run": "Run",
+    "jump": "Jump",
+    "mute": "Mute",
+    "back": "Back to cabin",
+    "clickLook": "Click to look around",
+    "clickResume": "Click to continue",
+    "escRelease": "Esc releases cursor",
+    "discovered": "discovered",
+    "allFound": "All stations found",
+    "windCancel": "Stop",
+    "vinylMutedHint": "Music is muted. Press M for sound",
+    "audioOn": "Audio on",
+    "audioOff": "Audio off",
+    "audioMute": "Mute audio",
+    "audioUnmute": "Unmute audio"
+  },
+  "prompt": {
+    "thoughts": "Notes",
+    "signpost": "Read signpost",
+    "fire": "Sit by fire",
+    "books": "Bookshelf",
+    "borzik": "Talk to Borzik",
+    "mailbox": "Mailbox",
+    "laptop": "Laptop",
+    "bookshelf": "Diploma cairn",
+    "photoWall": "Photo wall",
+    "record": "Vinyl player",
+    "recordPlay": "Play music",
+    "recordStop": "Stop music",
+    "gallery": "Gallery",
+    "heritage": "Read towers"
+  },
+  "os": {
+    "name": "Bilal OS",
+    "menuFile": "File",
+    "menuView": "View",
+    "shutDown": "Shut down",
+    "infoKind": "Kind",
+    "infoYear": "Year",
+    "infoRole": "Role",
+    "infoTech": "Tech",
+    "kindProject": "Project folder",
+    "visitSite": "Visit site",
+    "openRepo": "Open source",
+    "openNewTab": "Open in new tab",
+    "cantEmbed": "This site does not load inside Bilal OS.",
+    "loading": "Loading...",
+    "hintDesktop": "Open a folder.",
+    "trashEmpty": "Trash is empty.",
+    "trashBorzik": "Borzik ate the leftovers.",
+    "desktopSite": "mataev.no",
+    "desktopResume": "CV.pdf",
+    "desktopTerminal": "Terminal",
+    "desktopTrash": "Trash",
+    "terminalBanner": "Bilal OS, borzik-shell v1.0. Type `help` for commands.",
+    "terminalHelp": [
+      "Available commands:",
+      "  help              show commands",
+      "  whoami            identify Bilal",
+      "  ls / projects     list projects",
+      "  open <name>       open a project site",
+      "  resume            open CV",
+      "  contact           show contact details",
+      "  borzik            ask Borzik",
+      "  clear             clear screen"
+    ],
+    "terminalWhoami": [
+      "bilal - full-stack developer in Norway.",
+      "Makes websites and web apps, the design and the code.",
+      "Co-founder at Mash Partners."
+    ],
+    "terminalBorzik": [
+      "Borzik runs across the screen.",
+      "Borzik asks for sunflower seeds."
+    ],
+    "terminalContactMail": "email   ",
+    "terminalContactGithub": "github  ",
+    "terminalContactHint": "or press E at the mailbox.",
+    "terminalOpeningSite": "opening {url}...",
+    "terminalNoPublicSite": "{project} has no public site. Try `ls`.",
+    "terminalNoProject": "no project \"{project}\". Try `ls`.",
+    "terminalOpeningResume": "opening CV...",
+    "terminalCommandNotFound": "command not found: {command}. Type `help`."
+  },
+  "hero": {
+    "role": "Full-stack developer",
+    "location": "Norway",
+    "heritage": "roots in the Caucasus"
+  },
+  "now": {
+    "heading": "Now",
+    "studying": {
+      "k": "Studying",
+      "v": "Master's in informatics at NTNU, accounting at UINN"
+    },
+    "building": {
+      "k": "Building",
+      "v": "Websites and concept designs at Mash Partners"
+    },
+    "reading": {
+      "k": "Reading"
+    },
+    "playing": {
+      "k": "Outside work",
+      "v": "Training, travel and reading"
+    }
+  },
+  "sections": {
+    "work": "Selected work",
+    "about": "About",
+    "education": "Background",
+    "contact": "Contact",
+    "record": "Record player",
+    "signpost": "Signpost",
+    "borzik": "Borzik",
+    "books": "Bookshelf",
+    "gallery": "Gallery",
+    "heritage": "Between Two Mountains",
+    "groupStudy": "Studies",
+    "groupJob": "Jobs",
+    "ongoing": "Ongoing"
+  },
+  "heritage": {
+    "eyebrow": "Between Two Mountains: Caucasus highlands",
+    "p1": "The gate towers are bjov: Vainakh combat towers that Chechen and Ingush clans built in the Caucasus from the 11th to 18th centuries.",
+    "p2": "Builders stacked dressed stone without mortar. They kept the base heavy, narrowed the shaft, and crowned the roof with a pointed tsurko.",
+    "p3": "I use them as a bridge: Caucasus roots, Norwegian life, two mountain cultures that respect endurance and craft.",
+    "facts": [
+      {
+        "k": "Bjov",
+        "v": "Combat tower. 20-25 m, four to five floors, square footprint."
+      },
+      {
+        "k": "Tsurko",
+        "v": "Pointed stone crowning the stepped pyramid roof."
+      },
+      {
+        "k": "Cherh",
+        "v": "Stone overhangs. Defenders used them to protect the tower from above."
+      },
+      {
+        "k": "Kurtulg",
+        "v": "Proud stone. A dressed keystone above doors and windows, often carved with the owner’s name."
+      },
+      {
+        "k": "Ghala",
+        "v": "Residential tower. Families lived around a hearth and the central pillar, Aerd-Bogham."
+      }
+    ],
+    "kicker": "Between two mountains",
+    "title": "Bjov: the combat tower, surveyed",
+    "body": "Vainakh clans stacked dressed stone without mortar, heavy at the foot, narrow at the top. My roots are in the Caucasus and my life is in Norway — two mountain cultures with the same habit of building for weather."
+  },
+  "about": {
+    "dossier": [
+      {
+        "k": "Builds with",
+        "v": "TypeScript · Next.js · Fastify · PostgreSQL"
+      }
+    ]
+  },
+  "projects": {
+    "loyvetmitt": {
+      "title": "Loyvetmitt",
+      "context": "Via Mash Partners",
+      "role": "Lead developer and designer",
+      "summary": "A taxi licence owner uploads the Excel file of shifts, and Loyvetmitt works out each driver's pay. It saves the owner 1⁠–⁠4 hours a month."
+    },
+    "mash": {
+      "title": "Mash Partners",
+      "context": "Co-founder",
+      "role": "Design and development",
+      "summary": "I design and build what the studio ships: our own site and three client sites so far, for an artist, a restaurant and a mosque."
+    },
+    "kaybeo": {
+      "title": "Kaybeo",
+      "context": "Via Mash Partners",
+      "role": "Design and development",
+      "summary": "The site for the artist Kaybeo: all eight releases, and a player that keeps playing while you scroll."
+    },
+    "buypass": {
+      "title": "Buypass",
+      "context": "Bachelor's thesis, NTNU",
+      "role": "DevOps",
+      "summary": "Google and other browsers keep adding rules for certificate policies (CP/CPS). Our pipeline automates much of the upkeep, and Buypass now uses it."
+    },
+    "myboard": {
+      "title": "Myboard",
+      "context": "Personal project",
+      "role": "Development",
+      "summary": "A chess game for two over the internet, with custom boards and pieces and moves synced between the players in real time."
+    },
+    "gallery": {
+      "title": "MATAEV Gallery",
+      "context": "Personal project",
+      "role": "Development",
+      "summary": "A photo archive from travel and everyday life, with an API that serves each photo with EXIF data and place where known."
+    },
+    "dl": {
+      "role": "Role",
+      "stack": "Stack"
+    },
+    "visit": "Visit",
+    "shot": "Screenshot of the {site} front page"
+  },
+  "experience": {
+    "entur": {
+      "company": "Entur",
+      "role": "Customer consultant"
+    },
+    "taxi": {
+      "company": "Lillehammer Taxisentral, nights and weekends",
+      "role": "Transport coordinator"
+    },
+    "bknorstat": {
+      "company": "Burger King + Norstat",
+      "role": "Service worker + data collector"
+    }
+  },
+  "education": {
+    "line": "{level} in {degree}",
+    "level": {
+      "master": "Master's",
+      "bachelor": "Bachelor's"
+    },
+    "informatics": {
+      "degree": "Informatics",
+      "track": "Programming and Security Engineering"
+    },
+    "uinn": {
+      "degree": "Accounting and Advisory"
+    },
+    "ntnuim": {
+      "degree": "Information Management"
+    },
+    "ntnuprog": {
+      "degree": "Programming"
+    },
+    "thesis": "bachelor's thesis at Buypass"
+  },
+  "contact": {
+    "name": "Name",
+    "email": "Email",
+    "message": "Message",
+    "send": "Send message",
+    "sending": "Sending...",
+    "sent": "Message received. Tusen takk.",
+    "replySoon": "Bilal replies soon",
+    "errorSend": "Message failed. Email me instead.",
+    "errors": {
+      "nameRequired": "Enter your name.",
+      "emailInvalid": "Enter a valid email.",
+      "messageShort": "Write at least 8 characters."
+    },
+    "or": "Direct contact",
+    "emailLabel": "Email",
+    "phoneLabel": "Phone",
+    "reveal": "Show {label}"
+  },
+  "panel": {
+    "signpost": {
+      "title": "Hytteplassen",
+      "intro": "You woke by the fire. Night sits over the cabin, and the aurora moves through the trees. Start with any station.",
+      "controls": "Move",
+      "walk": "WASD to walk, Shift to run",
+      "look": "Mouse to look",
+      "interact": "E opens what you face",
+      "leave": "O opens 2D site, Esc closes",
+      "stations": "Stations",
+      "projects": "Projects",
+      "projectsHint": "workbench on the deck",
+      "education": "Education",
+      "educationHint": "stone cairn west",
+      "about": "About",
+      "aboutHint": "photo board on the cabin",
+      "contact": "Contact",
+      "contactHint": "mailbox at the north gate",
+      "record": "Vinyl player",
+      "recordHint": "east of the fire",
+      "borzikStation": "Borzik",
+      "borzikHint": "hamster home by the fire",
+      "books": "Bookshelf",
+      "booksHint": "inside, west wall",
+      "gallery": "Gallery",
+      "galleryHint": "far west wall",
+      "heritage": "Heritage towers",
+      "heritageHint": "between two mountains",
+      "followWind": "Follow wind",
+      "secrets": "Unmarked details",
+      "secretsBody": "A record plays if you find it. An old code works if you remember it.",
+      "languageLabel": "Language",
+      "norwegian": "Norsk",
+      "english": "English"
+    },
+    "borzik": {
+      "intro": "Borzik lives in the wall, hoards sunflower seeds, and reviews Bilal’s choices without mercy.",
+      "you": "You",
+      "send": "Send",
+      "placeholder": "Write to Borzik...",
+      "thinking": "*thinking...*"
+    },
+    "books": {
+      "intro": "Books I finished or keep close. Pick one for my notes.",
+      "by": "by",
+      "thoughts": "Notes",
+      "viewAll": "All books",
+      "statusRead": "Read",
+      "statusReading": "Reading",
+      "statusWant": "Want to read",
+      "empty": "No books yet.",
+      "reviewComing": "Notes coming.",
+      "loading": "Loading shelf...",
+      "error": "Goodreads did not respond. Try later.",
+      "close": "Close book"
+    },
+    "gallery": {
+      "intro": "Photos from travel and daily life.",
+      "loading": "Loading...",
+      "empty": "No photos yet. Check back later.",
+      "error": "Gallery failed to load.",
+      "fullSize": "Full size",
+      "viewOnGallery": "View on gallery",
+      "untitled": "Untitled",
+      "photograph": "Photograph",
+      "seeMore": "Open full gallery",
+      "seeAll": "Open gallery",
+      "close": "Close",
+      "prevPhoto": "Previous photo",
+      "nextPhoto": "Next photo",
+      "cantEmbed": "This page did not load here.",
+      "chechnya": "Chechnya"
+    }
+  },
+  "footer": {
+    "copyright": "© {year} Bilal R. Mataev"
+  },
+  "cabinGate": {
+    "mobile": "Use a desktop browser with WebGL for the 3D cabin.",
+    "noWebGL": "Your browser lacks WebGL. Try Chrome or Firefox.",
+    "lowEnd": "This device may struggle with 3D.",
+    "badge": "Desktop"
+  },
+  "a11y": {
+    "closeDialog": "Close dialog",
+    "skipToContent": "Skip to content"
+  },
+  "errors": {
+    "notFound": "Page not found."
+  },
+  "site": {
+    "chapters": {
+      "home": "Home",
+      "work": "Work",
+      "about": "About",
+      "contact": "Contact",
+      "cabin": "Cabin",
+      "label": "Chapters"
+    },
+    "hero": {
+      "lede": "Full-stack developer and designer in Norway. I build web apps from the database to the interface. The latest, Loyvetmitt, turns one Excel file of shifts into each driver's pay.",
+      "ctaWork": "See the work"
+    },
+    "borzik": {
+      "name": "Borzik, my hamster",
+      "drawn": "The one in every drawing"
+    },
+    "about": {
+      "bio": [
+        "I'm a developer and designer with roots in the Caucasus. At <mash>Mash Partners</mash> I take every site from the first sketch to the finished code, and <loyvetmitt>Loyvetmitt</loyvetmitt> was made the same way.",
+        "I'm doing a master's in informatics at NTNU and a bachelor's in accounting at UINN, and I've had <background>a job alongside school</background> since 2020."
+      ],
+      "deskTitle": "My desk",
+      "noteTitle": "Now",
+      "captions": {
+        "night": "Evening walk by the water",
+        "baby": "Me, age one. Same energy.",
+        "bowl": "Borzik, my hamster, asleep in a bowl",
+        "look": "Borzik looking up"
+      },
+      "chess": "Myboard, the chess game I wrote in C++",
+      "tidy": "Tidy the desk",
+      "tidied": "The desk is tidy",
+      "ask": "Ask me about him",
+      "askTitle": "Ask Borzik",
+      "backgroundTitle": "Working alongside school since 2020"
+    },
+    "contact": {
+      "copy": "Copy",
+      "copied": "Copied",
+      "copyLabel": "Copy the email address",
+      "open": "I'm available for anything from a full-time job to freelance work, and I can start right away."
+    },
+    "door": {
+      "title": "Cabin",
+      "enter": "Enter the 3D cabin"
+    },
+    "notFound": {
+      "title": "Borzik ate this page.",
+      "back": "Back to the homepage"
+    },
+    "chrome": {
+      "home": "Bilal Mataev, back to the start",
+      "otherLanguage": "Norsk",
+      "cabin": "3D cabin"
+    },
+    "cv": {
+      "open": "CV",
+      "title": "CV",
+      "download": "Download",
+      "close": "Close",
+      "loading": "Loading the CV…",
+      "error": "The CV could not be shown here.",
+      "pages": "{count} pages"
+    },
+    "stamp": {
+      "top": "Available",
+      "bottom": "for work",
+      "label": "Available for work. Go to contact."
+    }
+  }
+}
